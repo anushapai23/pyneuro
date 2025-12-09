@@ -302,11 +302,11 @@ class JsonSerializer(TextSerializer):
 
         return None
 
-    def serialize(self, value: Any) -> bytearray:
+    def serialize(self, value: Any) -> bytes:  # Changed return type hint
         text = self.serialize_to_text(value)
         if text is None:
-            return bytearray()
-        return bytearray(text, "utf-8")
+            return b""  # Return empty bytes
+        return text.encode("utf-8")  # Return bytes directly
 
     def serialize_to_text(self, value: Any) -> str:
         """
